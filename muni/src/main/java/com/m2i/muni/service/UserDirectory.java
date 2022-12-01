@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.m2i.muni.dao.UserRepository;
 import com.m2i.muni.model.User;
-import com.m2i.muni.repository.UserRepository;
 
 @Service
 public class UserDirectory {
@@ -15,7 +15,7 @@ public class UserDirectory {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public void addClient(User newUser) {
+	public void addUser(User newUser) {
 		userRepository.save(newUser);
 	}
 	

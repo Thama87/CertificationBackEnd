@@ -1,4 +1,4 @@
-package com.m2i.muni.repository;
+package com.m2i.muni.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.m2i.muni.dao.MessageRepository;
 import com.m2i.muni.model.Message;
-import com.m2i.muni.repository.MessageRepository;
 
 @Service
 public class MessageDirectory {
