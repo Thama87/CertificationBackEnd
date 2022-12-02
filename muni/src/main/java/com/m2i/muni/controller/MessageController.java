@@ -62,8 +62,8 @@ public class MessageController {
 		}
 	}
 	
-	@GetMapping("messages/before/{date}")
-	public List<Message> findByPostTimeBefore(@PathVariable("date")LocalDateTime postTime){
+	@GetMapping("messages/{date}")
+	public List<Message> findByPostTimeBefore(@PathVariable("date") LocalDateTime postTime){
 		return messageDirectory.findByPostTimeBefore(postTime);
 	}
 

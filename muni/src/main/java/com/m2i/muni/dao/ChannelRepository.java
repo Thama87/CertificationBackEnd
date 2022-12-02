@@ -10,4 +10,5 @@ import com.m2i.muni.model.Channel;
 
 @Repository
 public interface ChannelRepository extends JpaRepository<Channel, Long> {
+	
 }
