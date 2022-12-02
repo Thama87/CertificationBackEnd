@@ -25,8 +25,8 @@ public class ChannelController {
 	private ChannelDirectory channelDirectory;
 	
 	@GetMapping("channels")
-	public List<Channel> getChannel() {
-		return channelDirectory.getChannels();
+	public List<Channel> getAllChannels() {
+		return channelDirectory.getAllChannels();
 	}
 	
 	@GetMapping("channels/{id}")

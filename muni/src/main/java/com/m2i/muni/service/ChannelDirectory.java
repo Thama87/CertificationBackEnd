@@ -19,7 +19,7 @@ public class ChannelDirectory {
 		channelRepository.save(newChannel);
 	}
 	
-	public List<Channel> getChannels(){
+	public List<Channel> getAllChannels(){
 		return channelRepository.findAll();
 	}
 	

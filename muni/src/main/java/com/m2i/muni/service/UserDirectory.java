@@ -19,7 +19,7 @@ public class UserDirectory {
 		userRepository.save(newUser);
 	}
 	
-	public List<User> getUsers(){
+	public List<User> getAllUsers(){
 		return userRepository.findAll();
 	}
 	

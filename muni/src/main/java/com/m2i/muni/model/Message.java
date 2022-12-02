@@ -22,7 +22,6 @@ public class Message {
 	@Type(type = "text")
 	private String content;
 	@Column(name = "post_time")
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd_HH:mm:ss")
 	private LocalDateTime postTime;
 	@Column(name = "edit_time")
 	private LocalDateTime editTime;
