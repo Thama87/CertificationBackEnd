@@ -1,5 +1,6 @@
 package com.m2i.muni.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,11 @@ public class MessageController {
 			messageDirectory.updateMessage(varMessage, id);
 			return ResponseEntity.ok().build();
 		}
+	}
+	
+	@GetMapping("messages/before/{date}")
+	public List<Message> findByPostTimeBefore(@PathVariable("date")LocalDateTime postTime){
+		return messageDirectory.findByPostTimeBefore(postTime);
 	}
 
 }

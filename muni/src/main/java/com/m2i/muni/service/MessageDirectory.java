@@ -1,5 +1,6 @@
 package com.m2i.muni.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,10 @@ public class MessageDirectory {
 	
 	public void updateMessage(Message message, Long id) {
 		messageRepository.save(message);
+	}
+	
+	public List<Message> findByPostTimeBefore(LocalDateTime postTime){
+		return messageRepository.findByPostTimeBefore(postTime);
 	}
 
 }
