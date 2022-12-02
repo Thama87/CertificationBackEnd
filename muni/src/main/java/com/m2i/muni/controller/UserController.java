@@ -25,7 +25,7 @@ public class UserController {
 	private UserDirectory userDirectory;
 	
 	@GetMapping("users")
-	public List<User> getUser() {
+	public List<User> getUsers() {
 		return userDirectory.getUsers();
 	}
 	
