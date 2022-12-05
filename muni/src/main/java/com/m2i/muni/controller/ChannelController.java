@@ -51,13 +51,20 @@ public class ChannelController {
 	}
 
 	// Suppression d'un channel en fonction de son {id}
+	// On vérifie que le channel existe (en fonction de son id) avant la suppression
 	@DeleteMapping("channels/{id}")
-	public void deleteChannel(@PathVariable("id") Long id) {
-		channelDirectory.deleteChannel(id);
+	public ResponseEntity<Channel> deleteChannel(@RequestBody Channel varChannel, @PathVariable("id") Long id) {
+		if (!id.equals(varChannel.getId())) {
+			return ResponseEntity.notFound().build();
+		} else {
+			channelDirectory.deleteChannel(id);
+			return ResponseEntity.ok().build();
+		}
+
 	}
 
 	// Modification d'un channel
-	// On vérifie que le channel existe (en fonction de son id) avant la suppression
+	// On vérifie que le channel existe (en fonction de son id) avant la modification
 	@PutMapping("channels/{id}")
 	public ResponseEntity<Channel> updateChannel(@RequestBody Channel varChannel, @PathVariable("id") Long id) {
 		if (!varChannel.getId().equals(id)) {

@@ -20,17 +20,17 @@ import com.m2i.muni.service.UserDirectory;
 @RestController
 @RequestMapping("api")
 public class UserController {
-	
+
 	// @Autowired permet d'activer l'injection automatique de dépendance
 	@Autowired
 	private UserDirectory userDirectory;
-	
+
 	// Récupération de la liste de tous les users
 	@GetMapping("users")
 	public List<User> getAllUsers() {
 		return userDirectory.getAllUsers();
 	}
-	
+
 	// Récupération d'un user en fonction de son {id}
 	// Le cas d'un message non trouvé est traité
 	@GetMapping("users/{id}")
@@ -42,28 +42,33 @@ public class UserController {
 			return ResponseEntity.ok(optionalUser.get());
 		}
 	}
-	
-	// Ajout d'un nouveau user 
+
+	// Ajout d'un nouveau user
 	@PostMapping("users")
 	public User postUser(@RequestBody User newUser) {
 		userDirectory.addUser(newUser);
 		return newUser;
 	}
-	
+
 	// Suppression d'un user en fonction de son {id}
-	@DeleteMapping("users/{id}")
-	public void deleteUser(@PathVariable("id") Long id) {
-		userDirectory.deleteUser(id);
-	}
-	
-	// Modification d'un user
 	// On vérifie que le user existe (en fonction de son id) avant la suppression
-	@PutMapping("users/{id}")
-	public  ResponseEntity<User> updateUser(@RequestBody User varUser,  @PathVariable("id") Long id){
-		if(!varUser.getId().equals(id)) {
-			return ResponseEntity.badRequest().build();
+	@DeleteMapping("users/{id}")
+	public ResponseEntity<User> deleteUser(@RequestBody User varUser, @PathVariable("id") Long id) {
+		if (!id.equals(varUser.getId())) {
+			return ResponseEntity.notFound().build();
+		} else {
+			userDirectory.deleteUser(id);
+			return ResponseEntity.ok().build();
 		}
-		else {
+	}
+
+	// Modification d'un user
+	// On vérifie que le user existe (en fonction de son id) avant la modification
+	@PutMapping("users/{id}")
+	public ResponseEntity<User> updateUser(@RequestBody User varUser, @PathVariable("id") Long id) {
+		if (!varUser.getId().equals(id)) {
+			return ResponseEntity.badRequest().build();
+		} else {
 			userDirectory.updateUser(varUser, id);
 			return ResponseEntity.ok().build();
 		}
