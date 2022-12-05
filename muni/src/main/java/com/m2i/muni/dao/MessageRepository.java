@@ -10,9 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.m2i.muni.model.Message;
 import com.m2i.muni.model.User;
 
-
-
-
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
 	

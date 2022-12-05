@@ -12,6 +12,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
+//-------------------------------------------------------------------------------------------------//
+//-----------------------Classe liée à la table "messages" de la base de données-------------------//
+//-------------------------------------------------------------------------------------------------//
 @Entity
 @Table(name = "messages")
 public class Message {
@@ -26,12 +29,17 @@ public class Message {
 	@Column(name = "edit_time")
 	private LocalDateTime editTime;
 
+	// Création d'une clé étrangère vers la table "users"
 	@ManyToOne
 	private User user;
 
+	// Création d'une clé étrangère vers la table "channels"
 	@ManyToOne
 	private Channel channel;
 
+	//-------------------------------------------------------------------------------------------------//
+	//---------------------------------------- Getters et Setters -------------------------------------//
+	//-------------------------------------------------------------------------------------------------//
 	public User getUser() {
 		return user;
 	}
@@ -84,8 +92,11 @@ public class Message {
 	public String toString() {
 		return "Message [id=" + id + ", content=" + content + ", postTime=" + postTime + ", editTime=" + editTime + "]";
 	}
-
-	public Message(String content, LocalDateTime postTime, LocalDateTime editTime) {
+	
+	//-------------------------------------------------------------------------------------------------//
+	//---------------------------------------- Contructeurs -------------------------------------------//
+	//-------------------------------------------------------------------------------------------------//
+	 public Message(String content, LocalDateTime postTime, LocalDateTime editTime) {
 		this.content = content;
 		this.postTime = postTime;
 		this.editTime = editTime;

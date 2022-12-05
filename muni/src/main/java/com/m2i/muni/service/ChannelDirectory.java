@@ -12,9 +12,11 @@ import com.m2i.muni.model.Channel;
 @Service
 public class ChannelDirectory {
 	
+	// @Autowired permet d'activer l'injection automatique de dépendance
 	@Autowired
 	private ChannelRepository channelRepository;
 	
+	// Appel des méthodes déclarées dans ChannelRepository qui seront appelées dans ChannelController
 	public void addChannel(Channel newChannel) {
 		channelRepository.save(newChannel);
 	}

@@ -13,68 +13,69 @@ import com.m2i.muni.model.Message;
 
 @Service
 public class MessageDirectory {
-	
+
+	// @Autowired permet d'activer l'injection automatique de dépendance
 	@Autowired
 	private MessageRepository messageRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
+	// Appel des méthodes déclarées dans MessageRepository qui seront appelées dans MessageController
 	public void addMessage(Message newMessage) {
 		messageRepository.save(newMessage);
 	}
-	
-	public List<Message> getAllMessages(){
+
+	public List<Message> getAllMessages() {
 		return messageRepository.findAll();
 	}
-	
-	public Optional<Message> getMessageById(Long id){
+
+	public Optional<Message> getMessageById(Long id) {
 		return messageRepository.findById(id);
 	}
-	
+
 	public void deleteMessage(Long id) {
 		messageRepository.deleteById(id);
 	}
-	
+
 	public void updateMessage(Message message, Long id) {
 		messageRepository.save(message);
 	}
-	
-	public List<Message> getMessagesPostBefore(LocalDateTime postTime){
+
+	public List<Message> getMessagesPostBefore(LocalDateTime postTime) {
 		return messageRepository.findByPostTimeBefore(postTime);
 	}
-	
-	public List<Message> getMessagesPostAfter(LocalDateTime postTime){
+
+	public List<Message> getMessagesPostAfter(LocalDateTime postTime) {
 		return messageRepository.findByPostTimeAfter(postTime);
 	}
-	
-	public List<Message> getMessagesPostBetween(LocalDateTime postTime1, LocalDateTime postTime2){
+
+	public List<Message> getMessagesPostBetween(LocalDateTime postTime1, LocalDateTime postTime2) {
 		return messageRepository.findByPostTimeBetween(postTime1, postTime2);
 	}
-	
-	public List<Message> getMessagesEditBefore(LocalDateTime postTime){
+
+	public List<Message> getMessagesEditBefore(LocalDateTime postTime) {
 		return messageRepository.findByEditTimeBefore(postTime);
 	}
-	
-	public List<Message> getMessagesEditAfter(LocalDateTime postTime){
+
+	public List<Message> getMessagesEditAfter(LocalDateTime postTime) {
 		return messageRepository.findByEditTimeAfter(postTime);
 	}
-	
-	public List<Message> getMessagesEditBetween(LocalDateTime postTime1, LocalDateTime postTime2){
+
+	public List<Message> getMessagesEditBetween(LocalDateTime postTime1, LocalDateTime postTime2) {
 		return messageRepository.findByEditTimeBetween(postTime1, postTime2);
 	}
-	
-	public List<Message> getMessagesContaining(String snippet){
+
+	public List<Message> getMessagesContaining(String snippet) {
 		return messageRepository.findByContentContaining(snippet);
 	}
-	
-	public List<Message> getModifiedMessages(){
+
+	public List<Message> getModifiedMessages() {
 		return messageRepository.findByEditTimeNotNull();
 	}
-	
-	public List<Message> getMessagesByUserId(Long id){
+
+	public List<Message> getMessagesByUserId(Long id) {
 		return messageRepository.findByUser(userRepository.findById(id));
 	}
-
 
 }
