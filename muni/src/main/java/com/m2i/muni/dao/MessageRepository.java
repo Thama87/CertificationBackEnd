@@ -12,17 +12,17 @@ import com.m2i.muni.model.User;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-	
+
 	List<Message> findByPostTimeBefore(LocalDateTime postTime);
 	List<Message> findByPostTimeAfter(LocalDateTime postTime);
 	List<Message> findByPostTimeBetween(LocalDateTime postTime1, LocalDateTime postTime2);
-	
+
 	List<Message> findByEditTimeBefore(LocalDateTime postTime);
 	List<Message> findByEditTimeAfter(LocalDateTime postTime);
 	List<Message> findByEditTimeBetween(LocalDateTime postTime1, LocalDateTime postTime2);
 	List<Message> findByEditTimeNotNull();
-	
+
 	List<Message> findByContentContaining(String snippet);
-	
+
 	List<Message> findByUser(Optional<User> user);
 }

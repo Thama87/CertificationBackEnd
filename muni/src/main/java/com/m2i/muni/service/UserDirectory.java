@@ -12,15 +12,12 @@ import com.m2i.muni.model.User;
 @Service
 public class UserDirectory {
 
-	// @Autowired permet d'activer l'injection automatique de dépendance
+	// @Autowired permet d'activer l'injection automatique de dépendances
 	@Autowired
 	private UserRepository userRepository;
 
-	// Appel des méthodes déclarées dans UserRepository qui seront appelées dans UserController
-	public void addUser(User newUser) {
-		userRepository.save(newUser);
-	}
 
+	// Appel des méthodes déclarées dans UserRepository qui seront appelées dans UserController
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
@@ -29,12 +26,18 @@ public class UserDirectory {
 		return userRepository.findById(id);
 	}
 
+
+	public void addUser(User newUser) {
+		userRepository.save(newUser);
+	}
+
+
 	public void deleteUser(Long id) {
 		userRepository.deleteById(id);
 	}
 
+
 	public void updateUser(User user, Long id) {
 		userRepository.save(user);
 	}
-
 }

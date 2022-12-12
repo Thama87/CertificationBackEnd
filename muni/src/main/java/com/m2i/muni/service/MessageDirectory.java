@@ -14,18 +14,15 @@ import com.m2i.muni.model.Message;
 @Service
 public class MessageDirectory {
 
-	// @Autowired permet d'activer l'injection automatique de dépendance
+	// @Autowired permet d'activer l'injection automatique de dépendances
 	@Autowired
 	private MessageRepository messageRepository;
 
 	@Autowired
 	private UserRepository userRepository;
 
-	// Appel des méthodes déclarées dans MessageRepository qui seront appelées dans MessageController
-	public void addMessage(Message newMessage) {
-		messageRepository.save(newMessage);
-	}
 
+	// Appel des méthodes déclarées dans MessageRepository qui seront appelées dans MessageController
 	public List<Message> getAllMessages() {
 		return messageRepository.findAll();
 	}
@@ -34,13 +31,21 @@ public class MessageDirectory {
 		return messageRepository.findById(id);
 	}
 
+
+	public void addMessage(Message newMessage) {
+		messageRepository.save(newMessage);
+	}
+
+
 	public void deleteMessage(Long id) {
 		messageRepository.deleteById(id);
 	}
 
+
 	public void updateMessage(Message message, Long id) {
 		messageRepository.save(message);
 	}
+
 
 	public List<Message> getMessagesPostBefore(LocalDateTime postTime) {
 		return messageRepository.findByPostTimeBefore(postTime);
@@ -54,6 +59,7 @@ public class MessageDirectory {
 		return messageRepository.findByPostTimeBetween(postTime1, postTime2);
 	}
 
+
 	public List<Message> getMessagesEditBefore(LocalDateTime postTime) {
 		return messageRepository.findByEditTimeBefore(postTime);
 	}
@@ -66,16 +72,18 @@ public class MessageDirectory {
 		return messageRepository.findByEditTimeBetween(postTime1, postTime2);
 	}
 
+
 	public List<Message> getMessagesContaining(String snippet) {
 		return messageRepository.findByContentContaining(snippet);
 	}
+
 
 	public List<Message> getModifiedMessages() {
 		return messageRepository.findByEditTimeNotNull();
 	}
 
+
 	public List<Message> getMessagesByUserId(Long id) {
 		return messageRepository.findByUser(userRepository.findById(id));
 	}
-
 }

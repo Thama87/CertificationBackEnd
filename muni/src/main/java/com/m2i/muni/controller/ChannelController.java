@@ -21,9 +21,10 @@ import com.m2i.muni.service.ChannelDirectory;
 @RequestMapping("api")
 public class ChannelController {
 
-	// @Autowired permet d'activer l'injection automatique de dépendance
+	// @Autowired permet d'activer l'injection automatique de dépendances
 	@Autowired
 	private ChannelDirectory channelDirectory;
+
 
 	// Récupération de la liste de tous les channels
 	@GetMapping("channels")
@@ -43,12 +44,14 @@ public class ChannelController {
 		}
 	}
 
+
 	// Ajout d'un nouveau channel
 	@PostMapping("channels")
 	public Channel postChannel(@RequestBody Channel newChannel) {
 		channelDirectory.addChannel(newChannel);
 		return newChannel;
 	}
+
 
 	// Suppression d'un channel en fonction de son {id}
 	// On vérifie que le channel existe (en fonction de son id) avant la suppression
@@ -60,8 +63,8 @@ public class ChannelController {
 			channelDirectory.deleteChannel(id);
 			return ResponseEntity.ok().build();
 		}
-
 	}
+
 
 	// Modification d'un channel
 	// On vérifie que le channel existe (en fonction de son id) avant la modification
@@ -74,5 +77,4 @@ public class ChannelController {
 			return ResponseEntity.ok().build();
 		}
 	}
-
 }

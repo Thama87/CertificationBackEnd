@@ -21,9 +21,10 @@ import com.m2i.muni.service.UserDirectory;
 @RequestMapping("api")
 public class UserController {
 
-	// @Autowired permet d'activer l'injection automatique de dépendance
+	// @Autowired permet d'activer l'injection automatique de dépendances
 	@Autowired
 	private UserDirectory userDirectory;
+
 
 	// Récupération de la liste de tous les users
 	@GetMapping("users")
@@ -43,12 +44,14 @@ public class UserController {
 		}
 	}
 
+
 	// Ajout d'un nouveau user
 	@PostMapping("users")
 	public User postUser(@RequestBody User newUser) {
 		userDirectory.addUser(newUser);
 		return newUser;
 	}
+
 
 	// Suppression d'un user en fonction de son {id}
 	// On vérifie que le user existe (en fonction de son id) avant la suppression
@@ -62,6 +65,7 @@ public class UserController {
 		}
 	}
 
+
 	// Modification d'un user
 	// On vérifie que le user existe (en fonction de son id) avant la modification
 	@PutMapping("users/{id}")
@@ -73,5 +77,4 @@ public class UserController {
 			return ResponseEntity.ok().build();
 		}
 	}
-
 }

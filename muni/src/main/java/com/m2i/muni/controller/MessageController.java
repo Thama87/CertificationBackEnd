@@ -22,9 +22,10 @@ import com.m2i.muni.service.MessageDirectory;
 @RequestMapping("api")
 public class MessageController {
 
-	// @Autowired permet d'activer l'injection automatique de dépendance
+	// @Autowired permet d'activer l'injection automatique de dépendances
 	@Autowired
 	private MessageDirectory messageDirectory;
+
 
 	// Récupération de la liste de tous les messages
 	@GetMapping("messages")
@@ -44,11 +45,13 @@ public class MessageController {
 		}
 	}
 
+
 	// Ajout d'un nouveau message
 	@PostMapping("messages")
 	public void postMessage(@RequestBody Message newMessage) {
 		messageDirectory.addMessage(newMessage);
 	}
+
 
 	// Suppression d'un message en fonction de son {id}
 	// On vérifie que le message existe (en fonction de son id) avant la suppression
@@ -62,6 +65,7 @@ public class MessageController {
 		}
 	}
 
+
 	// Modification d'un message
 	// On vérifie que le message existe (en fonction de son id) avant la modification
 	@PutMapping("messages/{id}")
@@ -74,12 +78,13 @@ public class MessageController {
 		}
 	}
 
-//-------------------------------------------------------------------------------------------------//
-//---------------------------------------- Méthodes bonus -----------------------------------------//
-//-------------------------------------------------------------------------------------------------//
-	// Affichage des messages postés avant {date}
+	//-------------------------------------------------------------------------------------------------//
+	//------------------------------------- Méthodes bonus --------------------------------------------//
+	//-------------------------------------------------------------------------------------------------//
+
 	// La méthode stringToDate permet de convertir l'url du format String vers le
 	// format LocalDateTime
+	// Affichage des messages postés avant {date}
 	@GetMapping("messages/postbefore/{date}")
 	public List<Message> getMessagesPostBefore(@PathVariable("date") String dateString) {
 		return messageDirectory.getMessagesPostBefore(Methodes.stringToDate(dateString));
@@ -98,6 +103,7 @@ public class MessageController {
 		return messageDirectory.getMessagesPostBetween(Methodes.stringToDate(postTime1),
 				Methodes.stringToDate(postTime2));
 	}
+
 
 	// Affichage des messages modifiés avant {date}
 	@GetMapping("messages/editbefore/{date}")
@@ -119,11 +125,13 @@ public class MessageController {
 				Methodes.stringToDate(postTime2));
 	}
 
+
 	// Affichage des messages contenant le texte {snippet}
 	@GetMapping("messages/contains/{snippet}")
 	public List<Message> getMessagesContaining(@PathVariable("snippet") String snippet) {
 		return messageDirectory.getMessagesContaining(snippet);
 	}
+
 
 	// Affichage des messages ayant été modifiés
 	@GetMapping("messages/modified")
@@ -131,10 +139,10 @@ public class MessageController {
 		return messageDirectory.getModifiedMessages();
 	}
 
+
 	// Affichage de tous les messages de l'utilisateur d'identifiant {id}
 	@GetMapping("messages/user/{id}")
 	public List<Message> getMessagesByUserId(@PathVariable("id") Long id) {
 		return messageDirectory.getMessagesByUserId(id);
 	}
-
 }
