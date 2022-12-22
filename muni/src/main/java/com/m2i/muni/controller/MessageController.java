@@ -145,4 +145,11 @@ public class MessageController {
 	public List<Message> getMessagesByUserId(@PathVariable("id") Long id) {
 		return messageDirectory.getMessagesByUserId(id);
 	}
+
+
+	// Affichage de tous les messages du channel d'identifiant {id}
+	@GetMapping("messages/channel/{id}")
+	public List<Message> getMessagesByChannelId(@PathVariable("id") Long id) {
+		return messageDirectory.getMessagesByChannelId(id);
+	}
 }

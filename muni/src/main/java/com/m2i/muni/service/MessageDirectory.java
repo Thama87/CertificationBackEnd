@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.m2i.muni.dao.ChannelRepository;
 import com.m2i.muni.dao.MessageRepository;
 import com.m2i.muni.dao.UserRepository;
 import com.m2i.muni.model.Message;
@@ -20,6 +21,9 @@ public class MessageDirectory {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private ChannelRepository channelRepository;
 
 
 	// Appel des méthodes déclarées dans MessageRepository qui seront appelées dans MessageController
@@ -85,5 +89,10 @@ public class MessageDirectory {
 
 	public List<Message> getMessagesByUserId(Long id) {
 		return messageRepository.findByUser(userRepository.findById(id));
+	}
+
+
+	public List<Message> getMessagesByChannelId(Long id) {
+		return messageRepository.findByChannel(channelRepository.findById(id));
 	}
 }

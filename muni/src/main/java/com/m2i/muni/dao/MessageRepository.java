@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.m2i.muni.model.Channel;
 import com.m2i.muni.model.Message;
 import com.m2i.muni.model.User;
 
@@ -25,4 +26,5 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 	List<Message> findByContentContaining(String snippet);
 
 	List<Message> findByUser(Optional<User> user);
+	List<Message> findByChannel(Optional<Channel> channel);
 }
